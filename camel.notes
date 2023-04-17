@@ -1,0 +1,71 @@
+
+Modifying:
+==========
+.process()
+- void return type
+
+.transform()
+- non-void return type
+
+.bean(myBeanWithSingleMethod)
+- can be used to transform
+- myBeanWithSingleMethod -> instance name
+- this is the best practice -> no string references -> no potential for runtime errors 
+
+.bean(myBeanWithMultipleMethods, "methodNameAsString")
+- can be used to transform
+- myBeanWithSingleMethod -> instance name
+- potential for bugs as method name could change but the method string may not be updated causing a N.B: RUNTIME ERROR!!!!
+
+.bean("myBeanWithMultipleMethods", "methodNameAsString")
+- can be used to transform
+- Approach with most bugs, 2 string references
+    - method ref
+    - class ref - "myBeanWithMultipleMethods" - Class name: MyBeanWithMultipleMethods
+- if either changed references need to be changed, otherwise N.B: RUNTIME ERROR!!!!
+
+
+exchange.getMessage().getBody();
+exchange contains the message which contains the body.
+
+from("timer:send-msg-to-q-timer?period=10000")
+- create a time with a 10 sec period
+
+
+Camel Context
+Made up of:
+- routes
+- components - extensions like activemq component to integrate with activemq
+
+endpoints
+- from(<ENDPOINT>)
+- ref ro a q, db or file
+
+route:
+- connection between endpoints/processors and transformers
+
+transformation:
+- xml -> JSON
+- String -> Bean
+
+Message:
+- body
+- headers
+- attachments
+
+Exchange:
+- contains request and response info
+- exchangeId
+- message exchange pattern - inOnly/inOut
+  - in message & optional [out msg] - relates to pattern
+
+Architecture:
+Components:
+- JMS  component
+- HTTP components
+Processors:
+- filter
+- router
+- transformation
+
+
